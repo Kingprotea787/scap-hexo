@@ -1,0 +1,182 @@
+.rankingheader {
+    text-align: center;
+    padding: 100px 20px; /* 减小mobile padding */
+    background: linear-gradient(to bottom, #ffffff, #f5f5f7); /* 默认浅色渐变 */
+    color: #000;
+    position: relative;
+    overflow: visible;
+}
+
+.content p {
+  text-align: left;
+  white-space: pre-line;
+}
+
+.rankingheader h1 {
+    font-size: 4.2em; /* mobile默认较小 */
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
+    animation: zoomIn 1.2s ease-out;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-bottom: 100px;
+}
+
+.rankingheader div {
+    line-height: 1;
+    letter-spacing: -0.02em;
+    animation: zoomIn 1.2s ease-out;
+}
+.rankingheader div:first-of-type {
+    font-size: 1.5em; /* mobile默认较小 */
+    font-weight: 400;
+}
+.rankingheader div:nth-of-type(2) {
+    font-size: 3em; /* mobile默认较小 */
+    font-weight: 800;
+}
+.rankingheader p {
+    font-size: 1em; /* mobile默认较小 */
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1.2s ease-out 0.6s forwards;
+    opacity: 0;
+}
+/* 动感：增强动画效果 */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.attraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    position: relative;
+    padding-top: 50px; /* Add padding to accommodate rank circle without cutoff */
+    overflow: visible; /* Ensure rank circle isn't cut off */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(50px); /* Initial state: below for upward fade-in */
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+.attraction.is-visible {
+    opacity: 1;
+    transform: translateY(0); /* Animate upward on scroll into view, no rotate for pure vertical */
+    box-shadow: 0 12px 24px rgba(0,123,255,0.2); /* Blue-tinted shadow */
+}
+.attraction .rank {
+    background-color: #007aff; /* Blue accent */
+    color: #ffffff;
+    font-size: 2.5em; /* mobile默认较小 */
+    font-weight: bold;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular for flow */
+    position: absolute;
+    top: -40px; /* Position absolutely to overlap without margin cutoff */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.attraction img {
+    width: 100%;
+    max-width: 600px; /* Flexible for portrait images */
+    height: auto;
+    object-fit: contain; /* Use contain to show full vertical images without cropping */
+    border-bottom: 3px solid #007aff; /* Blue accent line */
+    transform: scale(1); /* Initial state */
+    transition: transform 0.6s ease;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.attraction.is-visible img {
+    transform: scale(1.05); /* Zoom on scroll into view */
+}
+.attraction .content {
+    padding: 30px 20px;
+    text-align: center;
+}
+.attraction h2 {
+    font-size: 1.8em;
+    margin: 0 0 10px;
+    color: #000;
+}
+.attraction p {
+    font-size: 1em;
+    margin: 0;
+    color: #515154;
+}
+/* Media Queries for Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .rankingheader {
+        background: linear-gradient(to bottom, #2c2c2e, #1d1d1f); /* 适配黑夜模式的渐变 */
+        color: #fff;
+    }
+    .attraction {
+        background-color: #2c2c2e;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+    }
+    .attraction .rank {
+        background-color: #0a84ff; /* Blue accent */
+    }
+    .attraction img {
+        border-bottom: 3px solid #0a84ff; /* Blue accent line */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .attraction h2 {
+        color: #fff;
+    }
+    .attraction p {
+        color: #d1d1d6;
+    }
+}
+/* Media Queries for Desktop */
+@media (max-aspect-ratio: 10/15) {
+    .rankingheader {
+        padding: 150px 20px;
+    }
+    .rankingheader h1 {
+        font-size: 3.2em;
+        padding-right: 6vw
+        padding-left: 6vw
+    }
+    .rankingheader div:first-of-type {
+        font-size: 2em;
+    }
+    .rankingheader div:nth-of-type(2) {
+        font-size: 4em;
+    }
+    .rankingheader p {
+        font-size: 1em;
+        padding-right: 20vw
+        padding-left: 20vw
+    }
+    .attraction .rank {
+        font-size: 3em;
+        width: 100px;
+        height: 100px;
+        top: -50px;
+    }
+    .attraction {
+        border-radius: 20px;
+        padding-top: 50px;
+    }
+    .attraction img {
+        max-width: 600px;
+    }
+}

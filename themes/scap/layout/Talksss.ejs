@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Forum · Reddit-like</title>
+  <link rel="stylesheet" href="<%= url_for('css/Talks.css') %>">
+</head>
+<body>
+  <%- partial('_partial/header') %> 
+  <header>
+    <div class="container row">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <div style="font-weight:800">SCAP</div>
+          <div class="hint">Talk</div>
+        </div>
+      </div>
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-sort="new">最新</div>
+        <div class="tab" data-sort="top">最热</div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btnAdmin">a</button>
+        <button class="btn btn-accent" id="btnNew">+</button>
+      </div>
+      <a href="/" class="btn">H</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="postList" class="grid"></div>
+    <div class="footer-tools">
+      <button class="btn" id="btnMore">加载更多</button>
+    </div>
+  </main>
+
+  <!-- 发帖 Modal -->
+  <dialog id="dlgNew">
+    <div class="modal">
+      <header class="row">
+        <div style="font-weight:700">发布新帖</div>
+        <div class="spacer"></div>
+        <button class="btn" onclick="dlgNew.close()">关闭</button>
+      </header>
+      <div class="body grid">
+        <input class="input" id="newAuthor" placeholder="作者（可留空，显示为匿名）" maxlength="40" />
+        <input class="input" id="newTitle" placeholder="标题*（最多120字）" maxlength="120" />
+        <textarea id="newContent" placeholder="正文*（最多5000字）"></textarea>
+        <div class="row2">
+          <div class="hint">＊为必填。提交后立即可见。</div>
+          <button class="btn btn-accent" id="btnSubmitPost">发布</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 详情面板 -->
+  <div class="detail" id="detail">
+    <div class="panel">
+      <div class="head">
+        <button class="btn" id="btnCloseDetail">返回</button>
+        <div class="spacer"></div>
+        <div class="pill"><span id="detailLikeCount">0</span> 赞</div>
+        <button class="btn" id="btnLikeDetail">点赞</button>
+      </div>
+      <div class="body">
+        <h2 id="detailTitle" class="title"></h2>
+        <div class="meta"><span id="detailMeta"></span></div>
+        <div id="detailContent" class="content" style="margin-top:10px"></div>
+
+        <section style="margin-top:18px">
+          <h3 style="margin:0 0 8px">评论</h3>
+          <form id="formComment" class="comment-form">
+            <div class="row2">
+              <input class="input" name="author" placeholder="昵称（可留空）" maxlength="40" />
+              <button class="btn btn-accent" type="submit">发表评论</button>
+            </div>
+            <textarea name="content" placeholder="说点什么…（最多1000字）" maxlength="1000" required></textarea>
+          </form>
+          <div id="comments" class="comments"></div>
+          <div class="footer-tools"><button class="btn" id="btnMoreComments">更多评论</button></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" style="display:none"></div>
+<script src="<%= url_for('js/Talks.js') %>"></script>
+</body>
+</html>

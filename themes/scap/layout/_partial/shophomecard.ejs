@@ -1,0 +1,7 @@
+<% cards.forEach(function(shophome_cards) { %>          
+    <a class="product-card" href="<%= shophome_cards.link %>">
+        <img src="<%= shophome_cards.img %>" alt="<%= shophome_cards.alt %>">
+        <h3><%= shophome_cards.title %></h3>
+        <p><%= shophome_cards.description %></p>
+    </a>
+<% }); %>

@@ -1,0 +1,105 @@
+# source/_data/shop.yml
+shophome_cards:
+  - img: '/img/shekan.jpg'
+    title: 社刊
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+    description: Exclusive tour merchandise for the Hibana World Tour.
+    link: ../shopdetail1
+
+  - img: '/img/shefu.jpg'
+    title: ファッショナブル「SCAP」Tシャツ / 社服
+    alt: SCAP T-Shirt
+    description: Stylish T-shirt from the SCAP Members.
+    link: ../shopdetail2
+
+  - img: '/img/lipai.jpg'
+    title: 亚克力制品
+    alt: "精选1"
+    description: 立牌，卡砖
+    link: ../shopdetail3
+
+  - img: '/img/baji.jpg'
+    title: 吧唧【ランダム9種】
+    alt: "精选1"
+    description: Random pouch with jacket designs.
+    link: ../shopdetail4
+
+  - img: '/img/IMG_0576.PNG'
+    title: 精致小卡片
+    alt: "精选1"
+    description: Special goods for the SCAP.
+    link: ../shopdetail5
+
+shopdetail_card1:
+  - img: '/img/xiaokapian.jpg'
+    title: "SCAP Anime RE: 01"
+    description: Resurrection of SCAP Magazine, in 2024 spring; 32p
+    price: $Not for Sell Now
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+
+  - img: '/img/shekan2.jpg'
+    title: "SCAP Anime RE: 02"
+    description: Resurrection of SCAP Magazine, in 2024 fall; 64p
+    price: $Not for Sell Now
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+
+  - img: '/img/shekan3.jpg'
+    title: "SCAP Anime RE: 03"
+    description: Resurrection of SCAP Magazine, in 2025 spring; 32p
+    price: $Not for Sell Now
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+
+shopdetail_card2:
+  - img: '/img/IMG_0572.PNG'
+    title: Fried Potato T-Shirt
+    description: Comfortable cotton t-shirt with fried potato print. Perfect for casual wear and showing your love for fried potatoes.
+    price: $19.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0573.PNG'
+    title: SNZ Hoodie
+    description: Warm hoodie featuring SNZ design. Ideal for chilly days and cozy nights.
+    price: $39.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0574.PNG'
+    title: Ado Mug
+    description: Ceramic mug with Ado logo. Start your day with a hot beverage in style.
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0575.PNG'
+    title: "管弦楽幻想曲「風の舞」"
+    description: "佐藤花子、札幌交響楽団"
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0576.PNG'
+    title: "オーケストラ組曲「大地への賛歌」"
+    description: "小林正樹、広島交響楽団"
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+
+shopdetail_card3:
+  - img: '/img/IMG_0572.PNG'
+    title: Fried Potato T-Shirt
+    description: Comfortable cotton t-shirt with fried potato print. Perfect for casual wear and showing your love for fried potatoes.
+    price: $19.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0573.PNG'
+    title: SNZ Hoodie
+    description: Warm hoodie featuring SNZ design. Ideal for chilly days and cozy nights.
+    price: $39.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0574.PNG'
+    title: Ado Mug
+    description: Ceramic mug with Ado logo. Start your day with a hot beverage in style.
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0575.PNG'
+    title: "管弦楽幻想曲「風の舞」"
+    description: "佐藤花子、札幌交響楽団"
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  - img: '/img/IMG_0576.PNG'
+    title: "オーケストラ組曲「大地への賛歌」"
+    description: "小林正樹、広島交響楽団"
+    price: $12.99
+    alt: Ado WORLD TOUR 2025 Hibana GOODS
+  # …按需继续添加

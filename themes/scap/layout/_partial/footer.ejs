@@ -1,0 +1,13 @@
+<footer>
+  <div class="footer-links">
+    <% site.data.footer.sections.forEach(section => { %>
+      <ul>
+        <li><strong><%= section.title %></strong></li>
+        <% section.items.forEach(item => { %>
+          <li><a href="<%= url_for(item.link) %>"><%= item.text %></a></li>
+        <% }) %>
+      </ul>
+    <% }) %>
+  </div>
+  <p><%= site.data.footer.copyright %></p>
+</footer>

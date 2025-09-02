@@ -1,0 +1,237 @@
+.actheader {
+    text-align: center;
+    padding: 100px 20px; /* 减小头部padding以适配mobile */
+    background: linear-gradient(to bottom, #ffffff, #f5f5f7); /* 默认浅色渐变 */
+    color: #000;
+    position: relative;
+    overflow: visible;
+}
+
+.actheader h1 {
+    font-size: 3.5em; /* 减小mobile字体 */
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
+    animation: zoomIn 1.2s ease-out;
+}
+
+.actheader p {
+    font-size: 1.5em; /* 减小mobile字体 */
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1.2s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+/* 动感：增强动画效果 */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 内容部分：模仿Vogue的杂志式布局，大图片主导，文字叠加或侧边 */
+.content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px; /* 减小padding */
+}
+
+.section {
+    display: flex;
+    flex-direction: column; /* 默认mobile为column */
+    align-items: center;
+    margin-bottom: 60px;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.section:nth-child(even) {
+    flex-direction: column; /* mobile下统一column */
+}
+
+.section:hover {
+    transform: scale(1.02); /* 动感：hover放大整个section */
+}
+
+.image-container {
+    width: 100%; /* mobile下图片全宽 */
+    position: relative;
+    margin-bottom: 20px; /* 添加间距 */
+}
+
+.section img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 默认浅色阴影 */
+    transition: transform 0.5s ease;
+}
+
+.section:hover img {
+    transform: rotate(2deg) scale(1.05); /* 动感：hover旋转并放大图片 */
+}
+
+.text-container {
+    width: 100%; /* mobile下全宽 */
+    padding: 0 20px; /* 调整padding */
+    text-align: center; /* mobile下居中文字 */
+}
+
+.section h2 {
+    font-size: 2.5em; /* 减小mobile字体 */
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000; /* 黑色的标题 */
+    letter-spacing: -0.02em;
+}
+
+.section p, .section ul {
+    font-size: 1.2em; /* 调整字体 */
+    color: #515154; /* 深灰色文字 */
+}
+
+.section ul {
+    list-style: none;
+    padding: 0;
+    text-align: left; /* 列表左对齐 */
+}
+
+.section li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.section li:before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #007aff; /* 浅色模式下的蓝色 accents */
+}
+
+/* 加入方式：居中突出 */
+.join-section {
+    text-align: center;
+    align-items: center; 
+    flex-direction: column;
+    padding: 40px 20px; /* 调整padding */
+    background: #ffffff; /* 默认浅色背景 */
+    border-radius: 16px;
+    margin: 40px 0;
+    white-space: pre-wrap;
+}
+
+.join-section img {
+    max-width: 200px; /* 调整QR码大小 */
+    margin: 20px 0;
+    margin-bottom: 20px;
+}
+
+/* 滚动淡入 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Queries for Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .actheader {
+        background: linear-gradient(to bottom, #2c2c2e, #1d1d1f); /* 适配黑夜模式的渐变 */
+        color: #fff;
+    }
+
+    .section img {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 适配黑夜模式的阴影 */
+    }
+
+    .section h2 {
+        color: #fff; /* 白色的标题 */
+    }
+
+    .section p, .section ul {
+        color: #d1d1d6; /* 浅灰色文字 */
+    }
+
+    .section li:before {
+        color: #0a84ff; /* 黑夜模式下的亮蓝色 accents */
+    }
+
+    .join-section {
+        background: #2c2c2e; /* 黑夜模式稍浅背景 */
+    }
+}
+
+/* Media Queries for Desktop */
+@media (min-width: 768px) {
+    .actheader {
+        padding: 150px 20px;
+    }
+
+    .actheader h1 {
+        font-size: 5em;
+    }
+
+    .actheader p {
+        font-size: 2em;
+        margin-top: 30px;
+    }
+
+    .content {
+        padding: 60px 20px;
+    }
+
+    .section {
+        flex-direction: row;
+        margin-bottom: 80px;
+    }
+
+    .section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .image-container {
+        flex: 1;
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    .text-container {
+        flex: 1;
+        padding: 0 40px;
+        text-align: left;
+    }
+
+    .section h2 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+    }
+
+    .section p, .section ul {
+        font-size: 1.3em;
+    }
+
+    .section ul {
+        text-align: left;
+    }
+
+    .join-section {
+        padding: 60px;
+    }
+
+    .join-section img {
+        max-width: 300px;
+    }
+}

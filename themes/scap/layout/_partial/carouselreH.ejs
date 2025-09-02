@@ -1,0 +1,13 @@
+<div class="carousel horizontal">
+  <button class="carousel-arrow left"><span class="arrow-icon"><</span></button>
+  <div class="carousel-container">
+
+      <% cards.forEach(function(films) { %>
+        <div class="card" data-title="<%= films.title %>" data-synopsis="<%= films.synopsis %>" data-rating="<%= films.rating %>" data-audience="<%= films.audience %>" data-cast="<%= films.cast %>" data-reviews="<%= films.reviews %>">
+          <img src="<%= films.img %>" alt="<%= films.alt %>">
+        </div>
+      <% }); %>
+
+  </div>
+  <button class="carousel-arrow right"><span class="arrow-icon">></span></button>
+</div>

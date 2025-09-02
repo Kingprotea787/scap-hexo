@@ -1,0 +1,102 @@
+/* —— 容器 —— */
+.dual-card {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 85vw;
+    background: #fff;                        /* 原 var(--bg-light) */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 原 var(--shadow-light) */
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* —— 左侧文字卡 —— */
+.textcard--text {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.textcard__icon {
+    width: 32px;
+    height: 32px;
+}
+.textcard__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.textcard__title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #1d1d1f;                          /* 原 var(--text-primary-light) */
+    transition: color 0.3s;
+}
+.textcard__text {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #3c3c43;                          /* 原 var(--text-secondary-light) */
+    transition: color 0.3s;
+}
+
+.textcard__btn {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #0070c9;                         /* 原 var(--accent) */
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0;
+}
+.textcard__btn-icon {
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+/* —— 右侧图片卡 —— */
+.textcard--image {
+    flex: 1;
+}
+.textcard--image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* —— 黑暗模式 —— */
+@media (prefers-color-scheme: dark) {
+    .dual-card {
+        background: #1e1e1e;                  /* 原 var(--bg-dark) */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 原 var(--shadow-dark) */
+    }
+    .textcard__title {
+        color: #e5e5ea;                        /* 原 var(--text-primary-dark) */
+    }
+    .textcard__icon path {
+        fill: #fff;                        /* 原 var(--text-primary-dark) */
+    }
+    .textcard__text {
+        color: #c7c7cc;                        /* 原 var(--text-secondary-dark) */
+    }
+}
+
+/* —— 竖屏切换：宽:高 < 1:1.8 —— */
+@media (max-aspect-ratio: 10/15) {
+    .dual-card {
+        flex-direction: column;
+    }
+    /* 让图片高度自适应，不要强制拉满父容器 */
+    .textcard--image {
+        height: auto;
+    }
+    .textcard--image img {
+        height: auto;
+    }
+}
