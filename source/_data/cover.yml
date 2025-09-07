@@ -65,6 +65,15 @@ gallery_covers:
     video: "/video/gaodapv.mp4"
     meta: "一丹101 · 5月24日星期六 19:00"
 
+  - img: '/img/sidianban.jpg'
+    title: 四畳半神話大系
+    alt: "精选8"
+    description: 身为大三学生的“我”，梦想着多采多姿的校园生活却过了两年毫无意义的生活。虽然入学时在众多社团中选择了网球社，但是因为无法与人对话而失去容身之处。这时，他遇上有同样际遇的小津，两人组成了在社团内外四处妨碍人恋爱、恶名昭彰的“黑色丘比特”。没有遇到小津的话肯定能与黑发少女过着缤纷的人生！如果那时候选了其他社团……
+    link: "https://example.com/video8"
+    tags: "#小说改 #平行宇宙 #另类空想 #人生"
+    video: "/video/sidieban.mp4"
+    meta: "一丹301 · 9月7日星期六 19:00"
+
   - img: '/img/liulibaoshi.jpg'
     title: "瑠璃的宝石"
     alt: "精选7"
@@ -73,12 +82,3 @@ gallery_covers:
     tags: "#漫画改 #日常 #挖矿"
     video: "/video/liulipv.mp4"
     meta: "地点待定 · 2025年x月xx日"
-
-  - img: '/img/IMG_0579.PNG'
-    title: "精选视频8"
-    alt: "精选8"
-    description: "An inspirational journey of self-discovery, growth, and overcoming challenges."
-    link: "https://example.com/video8"
-    tags: "#Inspirational #Journey #Growth #SelfDiscovery"
-    video: "/video/IMG_0579.m3u8"
-    meta: "99次观看 · 2025年3月30日 #Inspirational"
