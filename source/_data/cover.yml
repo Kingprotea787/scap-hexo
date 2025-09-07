@@ -65,13 +65,25 @@ gallery_covers:
     video: "/video/gaodapv.mp4"
     meta: "一丹101 · 5月24日星期六 19:00"
 
-  - img: '/img/sidianban.jpg'
+  - img: '/img/sidieban.jpg'
     title: 四畳半神話大系
     alt: "精选8"
     description: 身为大三学生的“我”，梦想着多采多姿的校园生活却过了两年毫无意义的生活。虽然入学时在众多社团中选择了网球社，但是因为无法与人对话而失去容身之处。这时，他遇上有同样际遇的小津，两人组成了在社团内外四处妨碍人恋爱、恶名昭彰的“黑色丘比特”。没有遇到小津的话肯定能与黑发少女过着缤纷的人生！如果那时候选了其他社团……
-    link: "https://example.com/video8"
+    link: "https://bangumi.tv/subject/4019"
     tags: "#小说改 #平行宇宙 #另类空想 #人生"
     video: "/video/sidieban.mp4"
+    meta: "一丹301 · 9月7日星期六 19:00"
+
+  - img: '/img/chunxiao.jpg'
+    title: 春宵苦短 / 夜は短し歩けよ乙女
+    alt: "精选7"
+    description: |
+      对学妹“黑发少女”一见倾心的“前辈”，今天也是进行着名为『尽可能进入她的眼帘』的作战——简称“尽(进)她眼作战”。
+      春之先斗町、夏之旧书市、秋之学园祭、而后是冬天的到来…。在京都这个城市中，在被卷入充满个性的同伴们所引发的一个个奇妙事件的同时，季节流转。
+      只能埋藏于内心的“前辈”的恋心，到底会去向何方！？
+    link: "https://b23.tv/ep115962"
+    tags: "#漫画改 #日常 #挖矿"
+    video: "/video/chunxiao.mp4"
     meta: "一丹301 · 9月7日星期六 19:00"
 
   - img: '/img/liulibaoshi.jpg'
