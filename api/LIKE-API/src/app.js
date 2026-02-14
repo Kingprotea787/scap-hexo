@@ -10,6 +10,7 @@ const bgmimportRoutes = require('./routes/bgm-import');
 const bgmRoutes = require('./routes/bgm');
 const voteRoutes = require('./routes/vote');
 const { router: liveRoutes } = require('./routes/live/index');
+const submissionRoutes = require('./routes/submission');
 
 function createApp() {
   const app = express();
@@ -27,6 +28,7 @@ function createApp() {
   app.use(bgmimportRoutes);
   app.use(voteRoutes);
   app.use(liveRoutes);
+  app.use(submissionRoutes);
 
   // 健康检查
   app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));

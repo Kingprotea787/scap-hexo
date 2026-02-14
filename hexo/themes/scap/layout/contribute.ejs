@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= site.data.submission.title %> - <%= config.title %></title>
+  <link rel="stylesheet" href="<%= url_for('css/nav.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/contribute.css') %>">
+</head>
+<body>
+  <%- partial('_partial/header') %>
+
+  <main class="contribute-page">
+    <section class="contribute-hero">
+      <h1><%= site.data.submission.title %></h1>
+      <p><%= site.data.submission.description %></p>
+    </section>
+
+    <section class="contribute-tabs">
+      <button class="tab-btn active" data-type="illustration">
+        <%= site.data.submission.illustration.title %>
+      </button>
+      <button class="tab-btn" data-type="article">
+        <%= site.data.submission.article.title %>
+      </button>
+    </section>
+
+    <section class="contribute-content">
+      <!-- 插画投稿面板 -->
+      <div class="tab-panel active" id="panel-illustration">
+        <div class="panel-grid">
+          <div class="panel-info">
+            <div class="info-card">
+              <img src="<%= url_for(site.data.submission.illustration.icon) %>" alt="插画" class="info-icon">
+              <h3><%= site.data.submission.illustration.title %></h3>
+              <p><%= site.data.submission.illustration.description %></p>
+              <ul class="requirements">
+                <% site.data.submission.illustration.requirements.forEach(req => { %>
+                  <li><%= req %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="panel-upload">
+            <form class="upload-form" data-type="illustration">
+              <div class="form-group">
+                <label for="email-illustration">邮箱 <span class="required">*</span></label>
+                <input type="email" id="email-illustration" name="email" required placeholder="your@email.com">
+                <span class="error-msg"></span>
+              </div>
+              <div class="form-group">
+                <label for="title-illustration">作品标题</label>
+                <input type="text" id="title-illustration" name="title" placeholder="可选">
+              </div>
+              <div class="form-group">
+                <label for="desc-illustration">作品说明</label>
+                <textarea id="desc-illustration" name="description" rows="3" placeholder="可选"></textarea>
+              </div>
+              <div class="form-group">
+                <label>上传文件 <span class="required">*</span></label>
+                <div class="dropzone" id="dropzone-illustration">
+                  <input type="file" id="file-illustration" name="file" accept=".jpg,.jpeg,.png,.gif,.webp" hidden>
+                  <div class="dropzone-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="17 8 12 3 7 8"/>
+                      <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>拖拽文件到此处，或 <span class="browse-link">点击选择</span></p>
+                    <p class="hint">支持 JPG、PNG、GIF、WebP，最大 20MB</p>
+                  </div>
+                  <div class="file-preview" hidden>
+                    <div class="preview-thumb"></div>
+                    <div class="preview-info">
+                      <p class="file-name"></p>
+                      <p class="file-size"></p>
+                    </div>
+                    <button type="button" class="remove-file" aria-label="移除文件">×</button>
+                  </div>
+                </div>
+              </div>
+              <div class="progress-container" hidden>
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">0%</p>
+              </div>
+              <button type="submit" class="submit-btn" disabled>提交投稿</button>
+              <div class="submit-status" hidden></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- 文章投稿面板 -->
+      <div class="tab-panel" id="panel-article">
+        <div class="panel-grid">
+          <div class="panel-info">
+            <div class="info-card">
+              <img src="<%= url_for(site.data.submission.article.icon) %>" alt="文章" class="info-icon">
+              <h3><%= site.data.submission.article.title %></h3>
+              <p><%= site.data.submission.article.description %></p>
+              <ul class="requirements">
+                <% site.data.submission.article.requirements.forEach(req => { %>
+                  <li><%= req %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="panel-upload">
+            <form class="upload-form" data-type="article">
+              <div class="form-group">
+                <label for="email-article">邮箱 <span class="required">*</span></label>
+                <input type="email" id="email-article" name="email" required placeholder="your@email.com">
+                <span class="error-msg"></span>
+              </div>
+              <div class="form-group">
+                <label for="title-article">作品标题</label>
+                <input type="text" id="title-article" name="title" placeholder="可选">
+              </div>
+              <div class="form-group">
+                <label for="desc-article">作品说明</label>
+                <textarea id="desc-article" name="description" rows="3" placeholder="可选"></textarea>
+              </div>
+              <div class="form-group">
+                <label>上传文件 <span class="required">*</span></label>
+                <div class="dropzone" id="dropzone-article">
+                  <input type="file" id="file-article" name="file" accept=".pdf,.doc,.docx,.txt,.md" hidden>
+                  <div class="dropzone-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="17 8 12 3 7 8"/>
+                      <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>拖拽文件到此处，或 <span class="browse-link">点击选择</span></p>
+                    <p class="hint">支持 PDF、DOC、DOCX、TXT、MD，最大 10MB</p>
+                  </div>
+                  <div class="file-preview" hidden>
+                    <div class="preview-thumb"></div>
+                    <div class="preview-info">
+                      <p class="file-name"></p>
+                      <p class="file-size"></p>
+                    </div>
+                    <button type="button" class="remove-file" aria-label="移除文件">×</button>
+                  </div>
+                </div>
+              </div>
+              <div class="progress-container" hidden>
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">0%</p>
+              </div>
+              <button type="submit" class="submit-btn" disabled>提交投稿</button>
+              <div class="submit-status" hidden></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="review-info">
+      <h2><%= site.data.submission.review.title %></h2>
+      <ul>
+        <% site.data.submission.review.items.forEach(item => { %>
+          <li><%= item %></li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+
+  <%- partial('_partial/footer') %>
+  <script src="<%= url_for('js/nav.js') %>"></script>
+  <script src="<%= url_for('js/contribute.js') %>"></script>
+</body>
+</html>

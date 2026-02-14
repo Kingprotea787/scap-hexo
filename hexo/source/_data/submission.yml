@@ -1,0 +1,34 @@
+# 投稿页面配置
+title: 投稿中心
+description: 欢迎向 SCAP 投稿你的作品！我们期待看到你的创意。
+
+# 插画投稿要求
+illustration:
+  title: 插画投稿
+  description: 分享你的原创插画作品
+  requirements:
+    - 支持 JPG、PNG、GIF、WebP 格式
+    - 单文件大小不超过 20MB
+    - 建议分辨率不低于 1920x1080
+    - 请确保作品为原创或已获得授权
+  icon: /img/a1.jpg
+
+# 文章投稿要求
+article:
+  title: 文章投稿
+  description: 投稿你的评论、分析或创作
+  requirements:
+    - 支持 PDF、DOC、DOCX、TXT、MD 格式
+    - 单文件大小不超过 10MB
+    - 文章内容需与 ACG 相关
+    - 请确保内容原创，引用需注明出处
+  icon: /img/a2.jpg
+
+# 审核说明
+review:
+  title: 审核说明
+  items:
+    - 投稿后我们会在 3-7 个工作日内完成审核
+    - 审核通过后会通过邮件通知您
+    - 如有问题，我们会通过邮件与您联系
+    - 投稿即表示您同意我们在网站上展示您的作品

@@ -60,9 +60,9 @@ menu:
       - title: 投稿
         items:
           - text: 插图投稿
-            link: '#'
-          - text: 制品投稿
-            link: '#'
+            link: contribute
+          - text: 文章投稿
+            link: contribute
 
   - text: Talks
     link: https://land.scapcomic.com
@@ -90,9 +90,9 @@ menu:
       - title: 征稿
         items:
           - text: 社刊文本征稿
-            link: '#'
+            link: contribute
           - text: 社刊插图征稿
-            link: '#'
+            link: contribute
           - text: Bangumi引擎
             link: BgmDL
 
@@ -116,9 +116,9 @@ menu:
       - title: 征稿
         items:
           - text: 社刊文本征稿
-            link: '#'
+            link: contribute
           - text: 社刊插图征稿
-            link: '#'
+            link: contribute
             
   - text: Shop
     link: shophome
