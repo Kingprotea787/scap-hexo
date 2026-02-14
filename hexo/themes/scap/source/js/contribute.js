@@ -106,8 +106,8 @@
     const password = adminPassword.value.trim();
 
     if (password === 'scapcomic') {
-      // 保存 token 到 sessionStorage
-      sessionStorage.setItem('adminToken', 'scapcomic');
+      // 保存 token 到 cookie (7天有效)
+      document.cookie = `adminToken=scapcomic; path=/; max-age=${7*24*60*60}; SameSite=Lax`;
       // 跳转到管理页面
       window.location.href = '/admin/';
     } else {

@@ -3,13 +3,7 @@
   'use strict';
 
   const API_BASE = 'https://scapcomic.com';
-  const ADMIN_TOKEN = sessionStorage.getItem('adminToken');
-
-  // 如果没有 token，跳转回投稿页面
-  if (!ADMIN_TOKEN) {
-    window.location.href = '/contribute/';
-    return;
-  }
+  const ADMIN_TOKEN = 'scapcomic';
 
   let currentStatus = 'all';
   let currentType = 'all';
