@@ -13,6 +13,3 @@ hexo/_multiconfig.yml
 # API
 api/**/node_modules/
 api/**/*.db
-
-# 敏感配置（SMTP密码等）
-api/**/src/config.js
