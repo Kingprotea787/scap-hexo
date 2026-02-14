@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const store = require('../services/submissionStore');
 const mailer = require('../services/submissionMailer');
+const { SUBMISSION_ADMIN_TOKEN } = require('../config');
 
 const router = Router();
 
@@ -34,8 +35,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // 管理员 token 验证
 function adminAuth(req, res, next) {
-  const token = process.env.SUBMISSION_ADMIN_TOKEN;
-  if (!token) {
+  if (!SUBMISSION_ADMIN_TOKEN) {
     return res.status(500).json({ error: 'Admin token not configured' });
   }
 
@@ -44,7 +44,7 @@ function adminAuth(req, res, next) {
     ? authHeader.slice(7)
     : req.headers['x-admin-token'];
 
-  if (providedToken !== token) {
+  if (providedToken !== SUBMISSION_ADMIN_TOKEN) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
