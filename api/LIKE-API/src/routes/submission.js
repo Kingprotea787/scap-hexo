@@ -204,7 +204,7 @@ router.post('/api/submission/:id/approve', adminAuth, async (req, res) => {
   }
 });
 
-// POST /api/submission/:id/reject - 审核拒绝
+// POST /api/submission/:id/reject - 审核拒绝（删除文件和记录）
 router.post('/api/submission/:id/reject', adminAuth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -219,17 +219,27 @@ router.post('/api/submission/:id/reject', adminAuth, async (req, res) => {
       return res.status(400).json({ error: 'Already rejected' });
     }
 
-    const updated = store.updateSubmissionStatus(id, 'rejected');
-
-    // 发送拒绝邮件
-    mailer.notifyRejection(updated, reason).catch(err => {
+    // 发送拒绝邮件（在删除前发送）
+    try {
+      await mailer.notifyRejection(submission, reason);
+    } catch (err) {
       console.error('[MAIL] Failed to notify rejection:', err.message);
-    });
+    }
+
+    // 删除文件
+    if (submission.storedPath && fs.existsSync(submission.storedPath)) {
+      fs.unlinkSync(submission.storedPath);
+      console.log('[SUBMISSION] Deleted file:', submission.storedPath);
+    }
+
+    // 删除记录
+    store.deleteSubmission(id);
+    console.log('[SUBMISSION] Deleted record:', id);
 
     res.json({
-      id: updated.id,
-      status: updated.status,
-      updatedAt: updated.updatedAt
+      id: id,
+      status: 'deleted',
+      message: '已拒绝并删除'
     });
 
   } catch (error) {

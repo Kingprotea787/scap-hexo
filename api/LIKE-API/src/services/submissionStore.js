@@ -108,20 +108,13 @@ function updateSubmissionStatus(id, status) {
   return submissions[index];
 }
 
-// 删除投稿 (用于回滚)
+// 删除投稿记录 (不删除文件，文件由调用方处理)
 function deleteSubmission(id) {
   const submissions = readMetadata();
   const index = submissions.findIndex(s => s.id === id);
 
   if (index === -1) {
     return false;
-  }
-
-  const submission = submissions[index];
-
-  // 删除文件
-  if (submission.storedPath && fs.existsSync(submission.storedPath)) {
-    fs.unlinkSync(submission.storedPath);
   }
 
   submissions.splice(index, 1);
