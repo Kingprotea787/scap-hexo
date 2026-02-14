@@ -1,0 +1,115 @@
+    /* 更真实的 Cover Flow - 应用在第一排 (精选内容) */
+    .cover-flow-wrapper {
+      perspective: 120em;
+      position: relative;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      max-width: 100vw;
+    }
+    .cover-flow {
+      transform-style: preserve-3d;
+      list-style: none;
+      white-space: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0 10px;
+      margin: 0;
+      --cover-size: calc(10vw + 200px);
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      min-height: auto;
+    }
+    .cover-flow::-webkit-scrollbar {
+      display: none;
+    }
+    .cover-flow li {
+      transform-style: preserve-3d;
+      display: inline-block;
+      width: var(--cover-size);
+      aspect-ratio: 12/9;
+      scroll-snap-align: center;
+      perspective: 40em;
+      cursor: pointer;
+      overflow: visible;
+      isolation: isolate;
+      border-radius: 10px;
+      position: relative;
+    }
+    .cover-flow li.placeholder {
+      scroll-snap-align: none;
+      pointer-events: none;
+      background-color: transparent;
+      cursor: default;
+    }
+    .cover-flow li img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      -webkit-box-reflect: below 0.5em linear-gradient(transparent, rgba(0,0,0,0.25));
+      will-change: transform;
+      position: relative;
+      user-select: none;
+      border-radius: 10px;
+    }
+    .selected-description {
+      transition: opacity .18s ease; /* 可按需调到 .12s~.22s */
+      will-change: opacity;
+    }
+    .selected-description.is-updating {
+      opacity: 0.35; /* 轻微变暗而不是全透明，视觉更平滑 */
+    }
+  .like-btn,
+  .share-btn,
+  .more-btn {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    gap: .35rem;  
+    border: 0;
+    background: transparent; /* 透明底 */
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  .icon{
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;        /* 防止被拉伸 */
+    /* 可选：若仍感觉略高，叠加微调 */
+    vertical-align: -0.1em;
+  }
+  /* 点赞后的高亮态，可以保留你的特殊配色 */
+  .like-btn.liked {
+    color: #ff68dc;
+    cursor: default;
+  }
+  .share-btn:hover {
+    color: #8b8bff;
+  }
+    /* Z-index 调整动画 */
+    @keyframes adjust-z-index {
+      0% { z-index: 1; }
+      50% { z-index: 100; }
+      100% { z-index: 1; }
+    }
+    /* Mobile mode: when aspect-ratio > 1:2 (i.e., max-aspect-ratio: 1/2) */
+    @media (prefers-color-scheme: light) {
+      .cover-flow li img {
+        -webkit-box-reflect: below 0.5em linear-gradient(transparent,rgba(255,255,255,0.1));
+      }
+      .like-btn,
+      .share-btn,
+      .more-btn  {
+        color: #000000;
+      }
+
+      /* 点赞后的高亮态，可以保留你的特殊配色 */
+      .like-btn.liked {
+        color: #ffabeb;
+      }
+      .share-btn:hover {
+        color: #3939ff;
+      }
+    }

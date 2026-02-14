@@ -1,0 +1,21 @@
+sections:
+  - title: Books and Goods
+    items:
+      - text: SCAPAnime
+        link: '#'
+      - text: Production
+        link: '#'
+  - title: Website Services
+    items:
+      - text: Bug Feedback
+        link: '#'
+      - text: Brainstorm
+        link: '#'
+  - title: About SCAP
+    items:
+      - text: Join Development
+        link: '#'
+      - text: Contact us
+        link: '#'
+copyright: "© 2025 SCAP org 版权所有. 网站上所有内容，仅供交流学习使用，禁止营利性质传播" 
+beian: "粤ICP备2025466868号" 

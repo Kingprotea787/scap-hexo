@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Activities Overview</title>
+    <link rel="stylesheet" href="<%= url_for('css/activity.css') %>">
+</head>
+<body>
+    <%- partial('_partial/header') %> <!-- Header partial, as per your setup -->
+    <div class = "actheader">
+        <h1>SCAP Activities Overview</h1>
+        <div>THE</div>
+        <div>VOGUE</div>
+        <p>Discover unlimited possibilities, join our club, experience diverse activities, and light up your campus life.</p>
+    </div>
+
+    <div class="content">
+        <div class="section fade-in">
+            <div class="image-container">
+                <img src="/img/yinyuehui3.jpg" alt="Club Introduction Image">
+            </div>
+            <div class="text-container">
+                <h2>Activity Introduction</h2>
+                <p>Our club gathers activities in Animate, Comic, Games, Novel, aiming to provide rich experiences and growth opportunities for every member. No matter what your interests are, you can find your stage here.</p>
+            </div>
+        </div>
+
+        <% if (site.data.activity.activity && site.data.activity.activity.length) { %>
+            <%- partial('_partial/act', { cards: site.data.activity.activity}) %>
+        <% } %>
+
+
+        <div class="join-section fade-in" id="join">
+            <h2>Joining Method</h2>
+            <img src="/img/QR.png" alt="Joining Method Image">
+            <p>Welcome all interested students! Scan the QR code.
+欢迎扫码进群，进群就是社员啦！
+            </p>
+        </div>
+    </div>
+    <%- partial('_partial/footer') %> <!-- Footer partial -->
+<script src="<%= url_for('js/activity.js') %>"></script>
+</body>
+</html>

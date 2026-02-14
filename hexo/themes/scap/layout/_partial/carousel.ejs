@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="<%= url_for('css/carousel.css') %>">
+<section class="carousel">
+  <button class="carousel-arrow left" aria-label="Previous">
+    <span class="arrow-icon">‹</span>
+  </button>
+  <div class="carousel-container">
+    <% cards.forEach(function(card) { %>
+      <div class="card" data-audio="<%= card.audio %>">
+        <img src="<%= card.img %>" alt="<%= card.alt %>">
+        <div class="card-info">
+          <h3><%= card.title %></h3>
+          <p class="description"><%= card.description %></p>
+          <% if (card.year) { %>
+            <p class="year"><%= card.year %></p>
+          <% } %>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  <button class="carousel-arrow right" aria-label="Next">
+    <span class="arrow-icon">›</span>
+  </button>
+</section>
+<script src="<%= url_for('js/carousel.js') %>"></script>

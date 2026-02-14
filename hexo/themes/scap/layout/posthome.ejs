@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title || 'SCAP Anime' %></title>
+  <link rel="stylesheet" href="<%= url_for('css/posthome.css') %>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+<%- partial('_partial/header') %> <!-- Header partial, as per your setup -->
+
+<main class="apple-news-home">  
+<section class="hero-carousel">
+  <!-- Swiper 容器 -->
+  <div class="swiper hero-swiper">  <!-- 添加 swiper 类 -->
+    <div class="swiper-wrapper">  <!-- 包裹所有 slide -->
+      <% if (site.posts.length > 0) { %>
+        <% site.posts.sort('date', -1).limit(3).each(function(post, index){ %>
+          <div class="swiper-slide">  <!-- 每个项为 swiper-slide -->
+            <a href="<%= url_for(post.path) %>">
+              <% if (post.banner) { %>
+                <img src="<%= post.banner %>" alt="<%= post.title %>" class="hero-image">
+              <% } %>
+              <div class="hero-overlay"></div>
+              <div class="hero-content">
+                <h2 class="title"><%= post.title %></h2>
+                <p class="excerpt"><%= post.excerpt ? strip_html(post.excerpt).substring(0, 100) + '...' : '' %></p>
+                <div class="meta">
+                  <span><%= post.date.format('MMMM D, YYYY') %></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }); %>
+      <% } %>
+    </div>
+    <div class="swiper-pagination"></div>  <!-- 分页点 -->
+    <div class="swiper-button-prev"></div>  <!-- 上一张按钮 -->
+    <div class="swiper-button-next"></div>  <!-- 下一张按钮 -->
+  </div>
+</section>
+
+<section class="top-stories">
+  <h3>Top Stories</h3>
+  <div class="story-grid">
+    <% page.posts.each(function(post){ %>  <!-- 使用当前页的帖子，无需sort/skip/limit -->
+      <article class="story-card">
+        <a href="<%= url_for(post.path) %>">
+          <% if (post.banner) { %>
+            <img src="<%= post.banner %>" alt="<%= post.title %>" class="card-image">
+          <% } %>
+          <div class="card-content">
+            <h4 class="card-title"><%= post.title %></h4>
+            <p class="card-excerpt"><%= post.excerpt ? strip_html(post.excerpt).substring(0, 80) + '...' : '' %></p>
+            <div class="card-meta">
+              <span><%= post.date.format('MMMM D, YYYY') %></span>
+            </div>
+          </div>
+        </a>
+      </article>
+    <% }); %>
+  </div>
+</section>
+
+  <% if (page.total > 1) { %>  <!-- 如果有多个分页页，则显示分页导航 -->
+    <div class="pagination">  <!-- 分页容器 -->
+      <%- paginator({ prev_text: '<', next_text: '>' }) %>  <!-- 使用 Hexo 的内置 paginator Helper 生成分页链接 -->
+    </div>
+  <% } %>
+
+  <%- partial('_partial/footer') %> <!-- Footer partial -->
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="<%= url_for('js/posthome.js') %>"></script>
+</body>
+</html>

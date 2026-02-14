@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title || 'SCAP Anime' %></title>
+  <link rel="stylesheet" href="<%= url_for('css/videocustom.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/videocomment.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/textcard.css') %>">
+</head>
+<body>
+  <%- partial('_partial/header') %> <!-- Header partial, as per your setup -->
+    <section class="section" id="Film">
+      <h2 class="section-title">周常放映 / 本周放映</h2>
+
+        <% if (site.data.cover.gallery_covers && site.data.cover.gallery_covers.length) { %>
+          <%- partial('_partial/cover', { cards: site.data.cover.gallery_covers }) %>
+        <% } %>
+
+    </section>
+
+    <section id="rule">
+      <% if (site.data.video.rule && site.data.video.rule.length) { %>
+        <%- partial('_partial/text', { cards: site.data.video.rule}) %>
+      <% } %>
+    </section>
+
+    <link rel="stylesheet" href="<%= url_for('css/carousel.css') %>">
+    <script src="<%= url_for('js/carousel.js') %>"></script>
+    <section class="hot-movies" id="Ranking1">
+      <h2 class="section-title">新番组</h2>
+        <% if (site.data.video.film1 && site.data.video.film1.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.video.film1 }) %>
+        <% } %>
+    </section>
+    <section class="hot-movies" id="Ranking2">
+      <h2 class="section-title">经典组</h2>
+        <% if (site.data.video.film2 && site.data.video.film2.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.video.film2 }) %>
+        <% } %>
+    </section>
+
+  <%- partial('_partial/footer') %> <!-- Footer partial -->
+  <!-- 视频播放界面 -->
+  <div id="videoPlayerContainer" class="video-player-container">
+    <span class="close-player" onclick="closePlayer()">×</span>
+    <video id="videoPlayer" class="video-player" controls></video>
+  </div>
+  <!-- 电影简介弹窗 -->
+<!-- 电影简介弹窗（你原有的） -->
+<div id="movieModal" class="movie-modal">
+  <div class="movie-modal-content">
+    <span class="movie-modal-close" onclick="closeMovieModal()">×</span>
+
+    <div class="movie-modal-header">
+      <img class="movie-modal-poster" id="moviePoster" src="" alt="">
+      <div>
+        <h2 id="movieTitle"></h2>
+          <div class="movie-modal-actions">
+            <button type="button" class="like-btn" aria-pressed="false" aria-label="点赞">
+              <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 
+                        6.59 8.59C6.22 8.95 6 9.45 6 10v9c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05
+                        c.09-.23.14-.47.14-.73v-2z"/>
+              </svg>
+              <span class="like-count">0</span>
+            </button>
+          </div>
+        <p id="movieInfo"></p>
+      </div>
+    </div>
+
+    <div class="movie-modal-synopsis">
+      <p id="movieSynopsis"></p>
+    </div>
+
+    <div class="movie-modal-ratings">
+      <div class="movie-modal-rating">
+        <span class="movie-modal-rating-value" id="movieRating"></span>
+        <span class="movie-modal-rating-label">评分</span>
+      </div>
+      <div class="movie-modal-rating">
+        <span class="movie-modal-rating-value" id="movieAudience"></span>
+        <span class="movie-modal-rating-label">动画公司</span>
+      </div>
+    </div>
+
+    <div class="movie-modal-cast">
+      <h4>声优</h4>
+      <div class="movie-modal-cast-list" id="movieCast"></div>
+    </div>
+
+    <div class="movie-modal-reviews">
+      <div class="reviews-header">
+        <h4>评论</h4>
+        <button id="openCommentBtn" class="btn btn-primary" type="button">评论</button>
+      </div>
+      <div id="movieReviews" class="reviews-list" aria-live="polite">
+      </div>
+      <div class="reviews-footer">
+        <span id="reviewsHint" class="hint"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 写评论弹窗 -->
+<div id="commentModal" class="comment-modal" aria-hidden="true" style="display:none;">
+  <div class="comment-modal-content">
+    <span class="comment-modal-close" id="closeCommentModal">×</span>
+    <h3>发表你的评论</h3>
+    <form id="commentForm">
+      <div class="row">
+        <label for="commentAuthor">昵称（可选）</label>
+        <input id="commentAuthor" name="author" type="text" maxlength="40" placeholder="匿名" />
+      </div>
+      <div class="row">
+        <label for="commentContent">内容</label>
+        <textarea id="commentContent" name="content" rows="4" maxlength="1000" placeholder="写点什么吧…" required></textarea>
+      </div>
+      <div class="row actions">
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="button" class="btn" id="cancelCommentBtn">取消</button>
+        <span id="commentHint" class="hint" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- 提名弹窗 -->
+<div id="nomModal" class="comment-modal" aria-hidden="true" style="display:none;">
+  <div class="comment-modal-content">
+    <span class="comment-modal-close" id="closeNomModal">×</span>
+    <h3>提交提名</h3>
+    <form id="nomForm">
+      <div class="row">
+        <label for="nomAuthor">学号（必要）</label>
+        <input id="nomAuthor" name="author" type="text" maxlength="40" placeholder="匿名" />
+      </div>
+      <div class="row">
+        <label for="nomContent">提名番剧名</label>
+        <textarea id="nomContent" name="content" rows="4" maxlength="1000" placeholder="写下你的提名理由…" required></textarea>
+      </div>
+      <div class="row actions">
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="button" class="btn" id="cancelNomBtn">取消</button>
+        <span id="nomHint" class="hint" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+</body>
+<script src="<%= url_for('js/video.js') %>"></script>
+</html>

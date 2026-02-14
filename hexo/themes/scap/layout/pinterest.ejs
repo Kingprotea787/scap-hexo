@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title || 'SCAP Anime' %></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+</head>
+<body>
+  <%- partial('_partial/header') %> <!-- Header partial, as per your setup -->
+
+  <% if (site.data.pinterest.gallery_cards && site.data.pinterest.gallery_cards.length) { %>
+    <%- partial('_partial/gallery', { cards: site.data.pinterest.gallery_cards }) %>
+  <% } %>
+
+</body>
+</html>

@@ -1,8 +1,15 @@
 .DS_Store
 Thumbs.db
-db.json
 *.log
-node_modules/
-public/
-.deploy*/
-_multiconfig.yml
+SCAPConfig.txt
+
+# Hexo
+hexo/node_modules/
+hexo/public/
+hexo/db.json
+hexo/.deploy*/
+hexo/_multiconfig.yml
+
+# API
+api/**/node_modules/
+api/**/*.db

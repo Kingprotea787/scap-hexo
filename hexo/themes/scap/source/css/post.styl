@@ -1,0 +1,190 @@
+  .apple-news-style {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero {
+    padding-top: 44px
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    z-index: 1;
+  }
+
+  .title {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.8em;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    opacity: 0.9;
+  }
+
+  .meta {
+    font-size: 1em;
+    font-weight: 400;
+    opacity: 0.8;
+    display: flex;
+    gap: 10px;
+  }
+
+  .intro {
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+  }
+
+  .lead {
+    font-size: 1.6em;
+    font-weight: 300;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  .body {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+  }
+
+  .body p {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #1c1c1e;
+  }
+
+  .body h2, .body h3 {
+    font-weight: 600;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: #000;
+  }
+
+  .body img {
+    max-width: 100%;
+    height: auto;
+    margin: 40px 0;
+    border-radius: 8px;
+  }
+
+  .body a {
+    color: #007aff;
+    text-decoration: none;
+  }
+
+  .body blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #ddd;
+    padding-left: 20px;
+    margin: 40px 0;
+  }
+
+
+  .tags a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007aff;
+  }
+
+
+  /* All dark mode styles consolidated into one media query */
+  @media (prefers-color-scheme: dark) {
+
+    .hero-image {
+      filter: brightness(0.7); /* Slightly darker for dark mode */
+    }
+
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%);
+    }
+
+    .hero-content {
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .lead {
+      color: #ccc;
+    }
+
+    .body p {
+      color: #e5e5e7;
+    }
+
+    .body h2, .body h3 {
+      color: #fff;
+    }
+
+    .body a {
+      color: #0a84ff; /* Adjusted blue for dark mode */
+    }
+
+    .body blockquote {
+      color: #aaa;
+      border-left-color: #444;
+    }
+
+
+    .tags a {
+      color: #0a84ff;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-aspect-ratio: 10/15) {
+    .hero {
+      height: 70vh;
+    }
+    .hero-content {
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+    }
+    .title {
+      font-size: 2.2em;
+    }
+    .subtitle {
+      font-size: 1.2em;
+    }
+    .intro, .body{
+      padding: 0 15px;
+    }
+    .lead {
+      font-size: 1.2em;
+      font-weight: 280;
+    }
+  }

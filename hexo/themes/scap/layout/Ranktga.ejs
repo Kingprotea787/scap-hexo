@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title || 'SCAP Anime' %></title>
+  <link rel="stylesheet" href="<%= url_for('css/videocustom.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/videocomment.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/textcard.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/ranking.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/tgarank.css') %>">
+</head>
+<body>
+  <%- partial('_partial/header') %> <!-- Header partial, as per your setup -->
+    <div class="rankingheader">
+        <% 
+            var topic = page.topic; 
+            var rule = page.description
+        %>
+        <h1><%= topic %></h1>
+        <p><%= rule %></p>
+    </div>
+
+    <link rel="stylesheet" href="<%= url_for('css/carousel.css') %>">
+    <script src="<%= url_for('js/carousel.js') %>"></script>
+    <section class="hot-movies" id="RankAnime">
+      <h2 class="section-title">年度番剧Anime</h2>
+        <% if (site.data.rank.Anime && site.data.rank.Anime.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.rank.Anime }) %>
+        <% } %>
+    </section>
+    <section class="hot-movies" id="RankComic">
+      <h2 class="section-title">年度漫画Comic</h2>
+        <% if (site.data.rank.Manga && site.data.rank.Manga.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.rank.Manga }) %>
+        <% } %>
+    </section>
+    <section class="hot-movies" id="RankGame">
+      <h2 class="section-title">最受期待二游Game</h2>
+        <% if (site.data.rank.Game && site.data.rank.Game.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.rank.Game }) %>
+        <% } %>
+    </section>
+    <section class="hot-movies" id="RankNovel">
+      <h2 class="section-title">年度轻小说Novel</h2>
+        <% if (site.data.rank.Novel && site.data.rank.Novel.length) { %>
+          <%- partial('_partial/carouselreV', { cards: site.data.rank.Novel }) %>
+        <% } %>
+    </section>
+    <section id="rule">
+      <% if (site.data.Ranktga.rule && site.data.Ranktga.rule.length) { %>
+        <%- partial('_partial/text', { cards: site.data.Ranktga.rule}) %>
+      <% } %>
+    </section>
+  <%- partial('_partial/footer') %> <!-- Footer partial -->
+  <!-- 电影简介弹窗 -->
+<!-- 电影简介弹窗（你原有的） -->
+<div id="movieModal" class="movie-modal">
+  <div class="movie-modal-content">
+    <span class="movie-modal-close" onclick="closeMovieModal()">×</span>
+
+    <div class="movie-modal-header">
+      <img class="movie-modal-poster" id="moviePoster" src="" alt="">
+      <div>
+        <h2 id="movieTitle"></h2>
+          <div class="movie-modal-actions">
+            <button type="button" class="vote-btn" aria-pressed="false" aria-label="投票">
+              <span class="vote-count">0</span>
+              <span class="vote-remaining"></span>
+            </button>
+          </div>
+        <p id="movieInfo"></p>
+      </div>
+    </div>
+
+    <div class="movie-modal-synopsis">
+      <p id="movieSynopsis"></p>
+    </div>
+
+    <div class="movie-modal-ratings">
+      <div class="movie-modal-rating">
+        <span class="movie-modal-rating-value" id="movieRating"></span>
+        <span class="movie-modal-rating-label">评分</span>
+      </div>
+      <div class="movie-modal-rating">
+        <span class="movie-modal-rating-value" id="movieAudience"></span>
+        <span class="movie-modal-rating-label">动画公司</span>
+      </div>
+    </div>
+
+    <div class="movie-modal-cast">
+      <h4>声优</h4>
+      <div class="movie-modal-cast-list" id="movieCast"></div>
+    </div>
+
+    <div class="movie-modal-reviews">
+      <div class="reviews-header">
+        <h4>评论</h4>
+        <button id="openCommentBtn" class="btn btn-primary" type="button">评论</button>
+      </div>
+      <div id="movieReviews" class="reviews-list" aria-live="polite">
+      </div>
+      <div class="reviews-footer">
+        <span id="reviewsHint" class="hint"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 写评论弹窗 -->
+<div id="commentModal" class="comment-modal" aria-hidden="true" style="display:none;">
+  <div class="comment-modal-content">
+    <span class="comment-modal-close" id="closeCommentModal">×</span>
+    <h3>发表你的评论</h3>
+    <form id="commentForm">
+      <div class="row">
+        <label for="commentAuthor">昵称（可选）</label>
+        <input id="commentAuthor" name="author" type="text" maxlength="40" placeholder="匿名" />
+      </div>
+      <div class="row">
+        <label for="commentContent">内容</label>
+        <textarea id="commentContent" name="content" rows="4" maxlength="1000" placeholder="写点什么吧…" required></textarea>
+      </div>
+      <div class="row actions">
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="button" class="btn" id="cancelCommentBtn">取消</button>
+        <span id="commentHint" class="hint" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- 提名弹窗 -->
+<div id="nomModal" class="comment-modal">
+  <div class="comment-modal-content">
+    <span class="comment-modal-close" id="closeNomModal">×</span>
+    <h3 style="margin-bottom: 20px;">提交提名</h3>
+    
+    <form id="nomForm2" onsubmit="return false;">
+      
+      <div class="row">
+        <label for="nomAuthor">学号（非必要）</label>
+        <input id="nomAuthor" name="author" type="text" maxlength="40" placeholder="匿名" />
+      </div>
+
+      <div class="row">
+        <label>分类</label>
+        <div class="nom-type" role="radiogroup">
+          <label class="nom-radio">
+            <input type="radio" name="nomType" value="Animate" checked />
+            <span class="dot"></span><span class="txt">Animate</span>
+          </label>
+          <label class="nom-radio">
+            <input type="radio" name="nomType" value="Comic" />
+            <span class="dot"></span><span class="txt">Comic</span>
+          </label>
+          <label class="nom-radio">
+            <input type="radio" name="nomType" value="Game" />
+            <span class="dot"></span><span class="txt">Game</span>
+          </label>
+          <label class="nom-radio">
+            <input type="radio" name="nomType" value="Novel" />
+            <span class="dot"></span><span class="txt">Novel</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="bgmSearchInput">搜索作品 (点击结果添加到下方)</label>
+        <input type="text" id="bgmSearchInput" placeholder="输入关键词搜索 Bangumi..." autocomplete="off">
+        
+        <div id="searchResults" class="search-results-container">
+            </div>
+      </div>
+
+      <div class="pre-submit-area">
+        <div class="selected-list" id="selectedContainer">
+            <span style="color: #666; font-size: 13px; align-self: center; width: 100%; text-align: center;" id="emptyHint">暂未选择任何条目</span>
+        </div>
+        
+        <div class="actions-right">
+          <button type="button" class="btn btn-primary" id="submitNomBtn">提交</button>
+          <button type="button" class="btn btn-secondary" id="cancelNomBtn">取消</button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+
+</body>
+<script src="<%= url_for('js/video.js') %>"></script>
+ <script src="<%= url_for('js/vote.js') %>"></script>
+ <script src="<%= url_for('js/ranking.js') %>"></script>
+</html>

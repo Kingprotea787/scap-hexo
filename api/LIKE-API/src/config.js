@@ -1,0 +1,8 @@
+// src/config.js
+const path = require('path');
+
+module.exports = {
+  PORT: process.env.PORT || 3000,
+  ADMIN_TOKEN: process.env.LIKE_ADMIN_TOKEN || null,
+  DB_PATH: path.join(process.cwd(), 'likes.db'),
+};

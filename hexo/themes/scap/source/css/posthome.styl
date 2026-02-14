@@ -1,0 +1,294 @@
+.apple-news-home {
+  width: 100%;  /* 全宽布局 */
+  margin: 0 auto;
+  padding: 0;  /* 移除内边距，实现全屏效果 */
+}
+
+/* 英雄轮播样式 */
+.hero-carousel {
+  padding-top: 44px;  /* 为状态栏或导航栏预留空间，修复缺少分号 */
+  position: relative;
+  height: calc(85vh - 44px);  /* 接近全屏英雄区，减去顶部 padding */
+  overflow: hidden;
+  display: flex;  /* Flex 布局，用于并排显示项（但默认只显示 active） */
+  gap: 0;  /* 移除间隙，实现无缝全屏 */
+  width: 100vw;  /* 全视口宽度 */
+  left: 50%;
+  transform: translateX(-50%);  
+  background-color: transparent;  /* 暗色背景以增强沉浸感，模仿 Apple News 的生动摄影 */
+}
+
+.hero-item {
+  flex: 1;  /* 每个项占等宽 */
+  position: relative;
+  display: none;  /* 默认隐藏 */
+  width: 100%;
+}
+
+.hero-item.active {
+  display: block;  /* 显示 active 项 */
+  flex: 1;  /* 全宽 */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* 图像覆盖容器 */
+  object-position: top;
+  border-radius: 0;  /* 移除圆角，更接近 Apple News 的全屏风格 */
+  filter: brightness(0.9);  /* 轻微调暗图像，提升文本对比 */
+}
+
+.hero-overlay {
+  position: absolute;
+  -webkit-backdrop-filter: blur(2px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);  /* 调整渐变以更早开始，提升可读性 */
+  border-radius: 0;
+  backdrop-filter: blur(2px);  /* 添加轻微模糊，模仿 2025 Liquid Glass 效果（需浏览器支持） */
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 60px;  /* 增加底部间距，更沉浸式 */
+  left: 40px;  /* 增加左侧间距 */
+  right: 40px;  /* 增加右侧间距 */
+  color: #fff;  /* 白色文本 */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);  /* 增强文本阴影，提升可读性 */
+  z-index: 1;  /* 确保内容在上层 */
+}
+
+.title {
+  font-size: 3.5em;  /* 进一步增大标题，更沉浸式 */
+  font-weight: 800;  /* 加粗，模仿 Apple 的 bold 风格 */
+  margin: 0;
+  line-height: 1.1;  /* 紧凑行高 */
+}
+
+.excerpt {
+  font-size: 1.6em;  /* 增大摘录 */
+  margin: 15px 0 0;
+  opacity: 0.9;  /* 轻微透明 */
+}
+
+.meta {
+  font-size: 1.1em;
+  opacity: 0.7;  /* 更淡的半透明 */
+  margin-top: 10px;
+}
+
+/* 顶部故事样式 */
+.top-stories {
+  max-width: 1200px;  /* 内容区居中 */
+  margin: 0 auto;  /* 居中 */
+  padding: 0 20px;  /* 轻微侧边距 */
+}
+
+.top-stories h3 {
+  font-size: 2.2em;
+  font-weight: 600;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding-top: 10px;
+  color: #000;
+}
+
+.story-grid {
+  display: grid;  /* 网格布局 */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));  /* 略增最小宽度，更像 Apple News 网格 */
+  gap: 24px;  /* 增加间隙，提升呼吸感 */
+}
+
+.story-card {
+  background: #fff;  /* 白色背景 */
+  border-radius: 12px;  /* 增大圆角，模仿 Apple 的柔和风格 */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);  /* 更柔和阴影 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* 平滑过渡 */
+}
+
+.story-card:hover {
+  transform: translateY(-8px);  /* hover 时上移更多 */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);  /* 增强阴影 */
+}
+
+.card-image {
+  width: 100%;
+  height: 240px;  /* 增加高度，更 immersive */
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 24px;  /* 增加内边距 */
+}
+
+.card-title {
+  font-size: 1.8em;  /* 增大标题 */
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.card-excerpt {
+  font-size: 1.2em;
+  color: #555;  /* 稍暗灰色 */
+  margin: 0 0 12px 0;
+}
+
+.card-meta {
+  font-size: 0.95em;
+  color: #888;  /* 更浅灰 */
+}
+
+.pagination {
+  text-align: center;  /* 居中 */
+  margin: 40px auto 0;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.pagination a {
+  color: #007aff;  /* Apple 蓝色链接 */
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+.pagination {
+  text-align: center;  /* 居中对齐，像 Google */
+  margin: 40px auto;  /* 上下间距 */
+  font-family: Arial, sans-serif;  /* Google 字体风格 */
+  font-size: 14px;  /* Google 分页字体大小 */
+  color: #222;  /* 默认文本色 */
+}
+
+.pagination a, .pagination span {
+  display: inline-block;  /* 水平排列 */
+  margin: 0 5px;  /* 链接间距，像 Google 的紧凑布局 */
+  text-decoration: none;  /* 无下划线 */
+  padding: 5px 10px;  /* 轻微 padding，避免太挤 */
+  transition: color 0.3s;  /* 平滑 hover 效果 */
+}
+
+.pagination a {
+  color: #1a0dab;  /* Google 蓝色链接 */
+}
+
+.pagination a:hover {
+  text-decoration: underline;  /* hover 时下划线，像 Google */
+  color: #660099;  /* 略深色 hover */
+}
+
+.pagination .page-number.current {
+  color: #000;  /* 当前页黑色 */
+  font-weight: bold;  /* 粗体突出，像 Google */
+}
+
+.pagination .extend.prev, .pagination .extend.next {
+  color: #1a0dab;  /* Previous/Next 蓝色 */
+  font-weight: normal;  /* 不粗体 */
+}
+
+.pagination .extend.prev:hover, .pagination .extend.next:hover {
+  text-decoration: underline;
+}
+/* 黑夜模式支持，所有修改整合到一个媒体查询中 */
+@media (prefers-color-scheme: dark) {
+    .pagination {
+        color: #ddd;  /* 浅灰文本 */
+    }
+    .pagination a {
+        color: #4285f4;  /* Google 深色模式蓝色 */
+    }
+    .pagination a:hover {
+        color: #8ab4f8;
+    }
+    .pagination .page-number.current {
+        color: #fff;  /* 当前页白色粗体 */
+    }
+
+  .top-stories h3 {
+    color: #fff;
+  }
+
+  .story-card {
+    background: #2c2c2e;  /* 深色卡片背景 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);  /* 更暗阴影 */
+  }
+
+  .story-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .card-title {
+    color: #fff;
+  }
+
+  .card-excerpt {
+    color: #ccc;  /* 浅灰 */
+  }
+
+  .card-meta {
+    color: #999;
+  }
+
+  .hero-carousel {
+    background-color: #000;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);  /* 更暗渐变 */
+  }
+
+  .hero-content {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);  /* 更强阴影 */
+  }
+
+  .pagination a {
+    color: #0a84ff;  /* 深色模式下的蓝色 */
+  }
+}
+
+/* 响应式调整 - 使用 max-width 以更好地匹配设备 */
+@media (max-aspect-ratio: 10/15) {
+  .pagination {
+    font-size: 12px;
+  }
+  .pagination a, .pagination span {
+    margin: 0 3px;
+    padding: 3px 6px;
+  }
+
+  .hero-carousel {
+    height: 75vh;  /* 手机上调整高度 */
+    padding-top: 20px;  /* 减小顶部 padding */
+  }
+
+  .hero-content {
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .title {
+    font-size: 1.8em;  /* 缩小标题 */
+  }
+
+  .excerpt {
+    font-size: 0.9em;
+  }
+
+  .top-stories {
+    padding: 0 10px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;  /* 单列布局 */
+    gap: 16px;
+  }
+
+  .story-card {
+    border-radius: 10px;
+  }
+}
