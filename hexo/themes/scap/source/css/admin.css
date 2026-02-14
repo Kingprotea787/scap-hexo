@@ -1,0 +1,624 @@
+/* ========== 管理员页面样式 - 黑白色系 ========== */
+
+.admin-page {
+  padding-top: 64px;
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ========== 页面头部 ========== */
+.admin-header {
+  padding: 40px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.admin-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.filter-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* ========== Tab 切换 ========== */
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.admin-tab-btn {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-tab-btn:hover {
+  color: #000;
+}
+
+.admin-tab-btn.active {
+  color: #000;
+  border-bottom-color: #000;
+  font-weight: 600;
+}
+
+/* ========== 投稿列表 ========== */
+.submissions-container {
+  padding: 20px 0 60px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.empty-state svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.submission-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.submission-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.submission-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.submission-id {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.submission-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.submission-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.submission-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background: rgba(255, 193, 7, 0.1);
+  color: #f57c00;
+  border: 1px solid #f57c00;
+}
+
+.status-approved {
+  background: rgba(76, 175, 80, 0.1);
+  color: #388e3c;
+  border: 1px solid #388e3c;
+}
+
+.status-rejected {
+  background: rgba(244, 67, 54, 0.1);
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.submission-body {
+  margin-bottom: 16px;
+}
+
+.submission-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.submission-file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.file-icon {
+  font-size: 1.5rem;
+}
+
+.submission-preview {
+  margin-top: 12px;
+}
+
+.preview-image {
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.preview-image:hover {
+  transform: scale(1.05);
+}
+
+.submission-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-preview {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.btn-preview:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-download {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.btn-download:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-approve {
+  background: #fff;
+  color: #388e3c;
+  border-color: #388e3c;
+}
+
+.btn-approve:hover {
+  background: #388e3c;
+  color: #fff;
+}
+
+.btn-reject {
+  background: #fff;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+.btn-reject:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.btn-approve:disabled,
+.btn-reject:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== 预览弹窗 ========== */
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.preview-modal.show {
+  display: flex;
+}
+
+.preview-dialog {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.preview-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.preview-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.preview-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.preview-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========== 确认弹窗 ========== */
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-modal.show {
+  display: flex;
+}
+
+.confirm-dialog {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.confirm-dialog h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.confirm-dialog p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.reject-reason {
+  margin-bottom: 20px;
+}
+
+.reject-reason label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.reject-reason textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.confirm-cancel,
+.confirm-ok {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirm-cancel {
+  background: #fff;
+  color: #666;
+  border-color: #ccc;
+}
+
+.confirm-cancel:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.confirm-ok {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.confirm-ok:hover {
+  background: #333;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-actions {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .submission-header {
+    flex-direction: column;
+  }
+
+  .submission-actions {
+    width: 100%;
+  }
+
+  .action-btn {
+    flex: 1;
+  }
+}
+
+/* ========== 深色模式 ========== */
+@media (prefers-color-scheme: dark) {
+  .admin-page {
+    background: #1c1c1e;
+    color: #fff;
+  }
+
+  .admin-header h1 {
+    color: #fff;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border-color: #3a3a3c;
+    color: #aaa;
+  }
+
+  .filter-btn:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .filter-btn.active {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  .admin-tabs {
+    border-bottom-color: #3a3a3c;
+  }
+
+  .admin-tab-btn {
+    color: #aaa;
+  }
+
+  .admin-tab-btn:hover {
+    color: #fff;
+  }
+
+  .admin-tab-btn.active {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+
+  .submission-card {
+    background: #2c2c2e;
+    border-color: #3a3a3c;
+  }
+
+  .submission-card:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+
+  .submission-title {
+    color: #fff;
+  }
+
+  .submission-meta {
+    color: #aaa;
+  }
+
+  .submission-description {
+    color: #ccc;
+  }
+
+  .submission-file {
+    background: #1c1c1e;
+  }
+
+  .preview-image {
+    border-color: #3a3a3c;
+  }
+
+  .btn-preview,
+  .btn-download {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+  }
+
+  .btn-preview:hover,
+  .btn-download:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .btn-approve {
+    background: transparent;
+  }
+
+  .btn-reject {
+    background: transparent;
+  }
+
+  .preview-dialog {
+    background: #2c2c2e;
+  }
+
+  .confirm-dialog {
+    background: #2c2c2e;
+  }
+
+  .confirm-dialog h3 {
+    color: #fff;
+  }
+
+  .confirm-dialog p {
+    color: #aaa;
+  }
+
+  .reject-reason label {
+    color: #fff;
+  }
+
+  .reject-reason textarea {
+    background: #1c1c1e;
+    border-color: #3a3a3c;
+    color: #fff;
+  }
+
+  .confirm-cancel {
+    background: transparent;
+    color: #aaa;
+    border-color: #3a3a3c;
+  }
+
+  .confirm-cancel:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .confirm-ok {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  .confirm-ok:hover {
+    background: #e0e0e0;
+  }
+}

@@ -252,6 +252,22 @@ router.get('/api/submission/:id', adminAuth, (req, res) => {
   res.json(safe);
 });
 
+// GET /api/submission/:id/file - 获取投稿文件 (管理员)
+router.get('/api/submission/:id/file', adminAuth, (req, res) => {
+  const { id } = req.params;
+  const submission = store.getSubmission(id);
+
+  if (!submission) {
+    return res.status(404).json({ error: 'Submission not found' });
+  }
+
+  if (!fs.existsSync(submission.storedPath)) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+
+  res.sendFile(submission.storedPath);
+});
+
 // GET /api/submissions - 列出投稿 (管理员)
 router.get('/api/submissions', adminAuth, (req, res) => {
   const { status, type, limit, offset } = req.query;

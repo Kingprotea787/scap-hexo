@@ -57,6 +57,66 @@
     });
   }
 
+  // 管理员入口
+  const adminEntryBtn = document.getElementById('adminEntryBtn');
+  const adminModal = document.getElementById('adminModal');
+  const adminPassword = document.getElementById('adminPassword');
+  const adminError = document.getElementById('adminError');
+  const adminCancel = document.getElementById('adminCancel');
+  const adminConfirm = document.getElementById('adminConfirm');
+
+  if (adminEntryBtn) {
+    adminEntryBtn.addEventListener('click', () => {
+      adminModal.classList.add('show');
+      adminPassword.value = '';
+      adminError.textContent = '';
+      setTimeout(() => adminPassword.focus(), 100);
+    });
+  }
+
+  if (adminCancel) {
+    adminCancel.addEventListener('click', () => {
+      adminModal.classList.remove('show');
+    });
+  }
+
+  if (adminModal) {
+    adminModal.addEventListener('click', (e) => {
+      if (e.target === adminModal) {
+        adminModal.classList.remove('show');
+      }
+    });
+  }
+
+  if (adminConfirm) {
+    adminConfirm.addEventListener('click', () => {
+      checkAdminPassword();
+    });
+  }
+
+  if (adminPassword) {
+    adminPassword.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkAdminPassword();
+      }
+    });
+  }
+
+  function checkAdminPassword() {
+    const password = adminPassword.value.trim();
+
+    if (password === 'scapcomic') {
+      // 保存 token 到 sessionStorage
+      sessionStorage.setItem('adminToken', 'scapcomic');
+      // 跳转到管理页面
+      window.location.href = '/admin.html';
+    } else {
+      adminError.textContent = '密码错误';
+      adminPassword.value = '';
+      adminPassword.focus();
+    }
+  }
+
   // Tab 切换
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabPanels = document.querySelectorAll('.tab-panel');

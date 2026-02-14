@@ -44,6 +44,11 @@
       <button class="tab-btn active" data-type="illustration">
         <%= site.data.submission.illustration.title %>
       </button>
+      <button class="admin-entry-btn" id="adminEntryBtn" title="管理员入口">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+      </button>
       <button class="tab-btn" data-type="article">
         <%= site.data.submission.article.title %>
       </button>
@@ -194,6 +199,19 @@
       <h3>投稿成功</h3>
       <p>我们会尽快审核并通过邮件通知您</p>
       <button class="success-close" id="successClose">确定</button>
+    </div>
+  </div>
+
+  <!-- 管理员密码弹窗 -->
+  <div class="admin-modal" id="adminModal">
+    <div class="admin-dialog">
+      <h3>管理员登录</h3>
+      <input type="password" id="adminPassword" placeholder="请输入管理员密码" autocomplete="off">
+      <div class="admin-error" id="adminError"></div>
+      <div class="admin-actions">
+        <button class="admin-cancel" id="adminCancel">取消</button>
+        <button class="admin-confirm" id="adminConfirm">确定</button>
+      </div>
     </div>
   </div>
 

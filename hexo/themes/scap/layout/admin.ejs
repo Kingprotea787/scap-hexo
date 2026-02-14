@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿管理 - <%= config.title %></title>
+  <link rel="stylesheet" href="<%= url_for('css/nav.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/admin.css') %>">
+</head>
+<body>
+  <%- partial('_partial/header') %>
+
+  <main class="admin-page">
+    <div class="admin-header">
+      <h1>投稿管理</h1>
+      <div class="admin-actions">
+        <button class="filter-btn active" data-status="all">全部</button>
+        <button class="filter-btn" data-status="pending">待审核</button>
+        <button class="filter-btn" data-status="approved">已通过</button>
+        <button class="filter-btn" data-status="rejected">已拒绝</button>
+      </div>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-type="all">全部</button>
+      <button class="admin-tab-btn" data-type="illustration">插画</button>
+      <button class="admin-tab-btn" data-type="article">文章</button>
+    </div>
+
+    <div class="submissions-container" id="submissionsContainer">
+      <div class="loading">加载中...</div>
+    </div>
+  </main>
+
+  <%- partial('_partial/footer') %>
+
+  <!-- 预览弹窗 -->
+  <div class="preview-modal" id="previewModal">
+    <div class="preview-dialog">
+      <button class="preview-close" id="previewClose">×</button>
+      <div class="preview-content" id="previewContent"></div>
+    </div>
+  </div>
+
+  <!-- 审核确认弹窗 -->
+  <div class="confirm-modal" id="confirmModal">
+    <div class="confirm-dialog">
+      <h3 id="confirmTitle">确认操作</h3>
+      <p id="confirmMessage"></p>
+      <div class="reject-reason" id="rejectReasonContainer" style="display: none;">
+        <label for="rejectReason">拒绝原因：</label>
+        <textarea id="rejectReason" rows="3" placeholder="请输入拒绝原因（可选）"></textarea>
+      </div>
+      <div class="confirm-actions">
+        <button class="confirm-cancel" id="confirmCancel">取消</button>
+        <button class="confirm-ok" id="confirmOk">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="<%= url_for('js/nav.js') %>"></script>
+  <script src="<%= url_for('js/admin.js') %>"></script>
+</body>
+</html>
