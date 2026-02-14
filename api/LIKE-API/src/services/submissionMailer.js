@@ -1,20 +1,10 @@
 // 投稿邮件服务
 const nodemailer = require('nodemailer');
-
-// 从环境变量读取配置
-const config = {
-  host: process.env.SMTP_HOST || '',
-  port: parseInt(process.env.SMTP_PORT || '587', 10),
-  secure: process.env.SMTP_SECURE === 'true',
-  user: process.env.SMTP_USER || '',
-  pass: process.env.SMTP_PASS || '',
-  from: process.env.SMTP_FROM || 'noreply@scapcomic.com',
-  adminEmail: process.env.SUBMISSION_ADMIN_EMAIL || ''
-};
+const { SMTP } = require('../config');
 
 // 检查是否配置了 SMTP
 function isConfigured() {
-  return !!(config.host && config.user && config.pass);
+  return !!(SMTP.host && SMTP.user && SMTP.pass);
 }
 
 // 创建 transporter
@@ -24,12 +14,12 @@ function createTransporter() {
   }
 
   return nodemailer.createTransport({
-    host: config.host,
-    port: config.port,
-    secure: config.secure,
+    host: SMTP.host,
+    port: SMTP.port,
+    secure: SMTP.secure,
     auth: {
-      user: config.user,
-      pass: config.pass
+      user: SMTP.user,
+      pass: SMTP.pass
     }
   });
 }
@@ -47,7 +37,7 @@ async function sendMail({ to, subject, html }) {
   }
 
   const result = await transporter.sendMail({
-    from: config.from,
+    from: SMTP.from,
     to,
     subject,
     html
@@ -58,9 +48,7 @@ async function sendMail({ to, subject, html }) {
 
 // 发送新投稿通知给管理员
 async function notifyAdmin(submission) {
-  const adminEmail = config.adminEmail;
-
-  if (!adminEmail) {
+  if (!SMTP.adminEmail) {
     console.log('[MAIL] No admin email configured, skipping notification');
     return null;
   }
@@ -83,7 +71,7 @@ async function notifyAdmin(submission) {
   `;
 
   return sendMail({
-    to: adminEmail,
+    to: SMTP.adminEmail,
     subject: `[SCAP] 新${typeLabel}投稿 - ${submission.title || submission.originalFilename}`,
     html
   });
