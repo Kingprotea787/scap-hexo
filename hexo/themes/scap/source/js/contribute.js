@@ -109,7 +109,7 @@
       // 保存 token 到 sessionStorage
       sessionStorage.setItem('adminToken', 'scapcomic');
       // 跳转到管理页面
-      window.location.href = '/admin.html';
+      window.location.href = '/admin/';
     } else {
       adminError.textContent = '密码错误';
       adminPassword.value = '';

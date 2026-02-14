@@ -7,7 +7,7 @@
 
   // 如果没有 token，跳转回投稿页面
   if (!ADMIN_TOKEN) {
-    window.location.href = '/contribute.html';
+    window.location.href = '/contribute/';
     return;
   }
 
