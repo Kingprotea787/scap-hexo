@@ -4,31 +4,33 @@
 
   const API_BASE = 'https://scapcomic.com';
 
-  // 3D 走马灯自动滚动
+  // 3D 走马灯自动滚动 - 首尾相连无缝循环
   const coverFlow = document.getElementById('coverFlow');
   if (coverFlow) {
+    // 复制一份图片列表实现无缝循环
+    const items = Array.from(coverFlow.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      coverFlow.appendChild(clone);
+    });
+
     let scrollAmount = 0;
-    const scrollSpeed = 0.5; // 像素/帧
+    const scrollSpeed = 1; // 像素/帧
+    const totalWidth = coverFlow.scrollWidth / 2; // 原始内容宽度
 
     function autoScroll() {
       scrollAmount += scrollSpeed;
-      if (scrollAmount >= coverFlow.scrollWidth - coverFlow.clientWidth) {
+
+      // 当滚动到一半时重置（因为内容重复了）
+      if (scrollAmount >= totalWidth) {
         scrollAmount = 0;
       }
-      coverFlow.scrollLeft = scrollAmount;
+
+      coverFlow.style.transform = `translateY(-50%) translateX(-${scrollAmount}px)`;
       requestAnimationFrame(autoScroll);
     }
 
     autoScroll();
-
-    // 鼠标悬停时暂停
-    coverFlow.addEventListener('mouseenter', () => {
-      coverFlow.style.animationPlayState = 'paused';
-    });
-
-    coverFlow.addEventListener('mouseleave', () => {
-      coverFlow.style.animationPlayState = 'running';
-    });
   }
 
   // 成功弹窗
@@ -300,7 +302,7 @@
         // 显示成功弹窗
         showSuccessModal();
 
-        // 重置表单
+        // 重置表单 - 清除所有输入
         form.reset();
         clearFile();
 
