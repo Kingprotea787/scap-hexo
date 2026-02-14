@@ -13,3 +13,4 @@ hexo/_multiconfig.yml
 # API
 api/**/node_modules/
 api/**/*.db
+api/**/.env
