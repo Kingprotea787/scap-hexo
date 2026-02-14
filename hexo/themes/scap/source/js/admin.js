@@ -122,6 +122,35 @@
     bindCardEvents();
   }
 
+  // 缓存已加载的图片 blob URL
+  const imageCache = {};
+
+  // 加载需要认证的图片
+  async function loadAuthImage(id, imgElement) {
+    if (imageCache[id]) {
+      imgElement.src = imageCache[id];
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE}/api/submission/${id}/file`, {
+        headers: {
+          'Authorization': `Bearer ${ADMIN_TOKEN}`
+        }
+      });
+
+      if (!response.ok) throw new Error('Failed to load image');
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      imageCache[id] = url;
+      imgElement.src = url;
+    } catch (error) {
+      console.error('Failed to load image:', error);
+      imgElement.alt = '加载失败';
+    }
+  }
+
   function createSubmissionCard(submission) {
     const statusClass = `status-${submission.status}`;
     const statusText = {
@@ -142,8 +171,8 @@
     if (submission.type === 'illustration') {
       previewSection = `
         <div class="submission-preview">
-          <img src="${API_BASE}/api/submission/${submission.id}/file"
-               alt="预览"
+          <img src=""
+               alt="加载中..."
                class="preview-image"
                data-id="${submission.id}">
         </div>
@@ -189,10 +218,13 @@
   }
 
   function bindCardEvents() {
-    // 预览图片点击
+    // 加载所有预览图片
     document.querySelectorAll('.preview-image').forEach(img => {
+      const id = img.dataset.id;
+      loadAuthImage(id, img);
+
       img.addEventListener('click', () => {
-        showPreview(img.dataset.id);
+        showPreview(id);
       });
     });
 
@@ -229,21 +261,52 @@
     });
   }
 
-  function showPreview(id) {
+  async function showPreview(id) {
     const modal = document.getElementById('previewModal');
     const content = document.getElementById('previewContent');
-    content.innerHTML = `<img src="${API_BASE}/api/submission/${id}/file" alt="预览">`;
+
+    // 使用缓存或重新加载
+    if (imageCache[id]) {
+      content.innerHTML = `<img src="${imageCache[id]}" alt="预览">`;
+    } else {
+      content.innerHTML = '<p>加载中...</p>';
+      try {
+        const response = await fetch(`${API_BASE}/api/submission/${id}/file`, {
+          headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+        });
+        if (!response.ok) throw new Error('Failed');
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        imageCache[id] = url;
+        content.innerHTML = `<img src="${url}" alt="预览">`;
+      } catch {
+        content.innerHTML = '<p>加载失败</p>';
+      }
+    }
     modal.classList.add('show');
   }
 
-  function downloadFile(id) {
+  async function downloadFile(id) {
     const submission = submissions.find(s => s.id === id);
     if (!submission) return;
 
-    const link = document.createElement('a');
-    link.href = `${API_BASE}/api/submission/${id}/file`;
-    link.download = submission.originalFilename;
-    link.click();
+    try {
+      const response = await fetch(`${API_BASE}/api/submission/${id}/file`, {
+        headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` }
+      });
+      if (!response.ok) throw new Error('Failed');
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = submission.originalFilename;
+      link.click();
+
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      alert('下载失败');
+    }
   }
 
   function confirmAction(action, id) {
