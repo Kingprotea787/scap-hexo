@@ -2,6 +2,20 @@
 title: 投稿中心
 description: 欢迎向 SCAP 投稿你的作品！我们期待看到你的创意。
 
+# 3D 走马灯图片
+carousel_images:
+  - /img/a1.jpg
+  - /img/a2.jpg
+  - /img/a3.jpg
+  - /img/a4.jpg
+  - /img/a5.jpg
+  - /img/a6.jpg
+  - /img/a7.jpg
+  - /img/a8.jpg
+
+# 审核说明背景图
+review_background: /img/cover.jpg
+
 # 插画投稿要求
 illustration:
   title: 插画投稿

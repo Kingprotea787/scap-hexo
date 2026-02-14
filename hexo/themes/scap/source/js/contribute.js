@@ -4,6 +4,57 @@
 
   const API_BASE = 'https://scapcomic.com';
 
+  // 3D 走马灯自动滚动
+  const coverFlow = document.getElementById('coverFlow');
+  if (coverFlow) {
+    let scrollAmount = 0;
+    const scrollSpeed = 0.5; // 像素/帧
+
+    function autoScroll() {
+      scrollAmount += scrollSpeed;
+      if (scrollAmount >= coverFlow.scrollWidth - coverFlow.clientWidth) {
+        scrollAmount = 0;
+      }
+      coverFlow.scrollLeft = scrollAmount;
+      requestAnimationFrame(autoScroll);
+    }
+
+    autoScroll();
+
+    // 鼠标悬停时暂停
+    coverFlow.addEventListener('mouseenter', () => {
+      coverFlow.style.animationPlayState = 'paused';
+    });
+
+    coverFlow.addEventListener('mouseleave', () => {
+      coverFlow.style.animationPlayState = 'running';
+    });
+  }
+
+  // 成功弹窗
+  const successModal = document.getElementById('successModal');
+  const successClose = document.getElementById('successClose');
+
+  function showSuccessModal() {
+    successModal.classList.add('show');
+  }
+
+  function hideSuccessModal() {
+    successModal.classList.remove('show');
+  }
+
+  if (successClose) {
+    successClose.addEventListener('click', hideSuccessModal);
+  }
+
+  if (successModal) {
+    successModal.addEventListener('click', (e) => {
+      if (e.target === successModal) {
+        hideSuccessModal();
+      }
+    });
+  }
+
   // Tab 切换
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabPanels = document.querySelectorAll('.tab-panel');
@@ -246,7 +297,8 @@
           xhr.send(formData);
         });
 
-        showStatus('投稿成功！我们会尽快审核并通过邮件通知您。', 'success');
+        // 显示成功弹窗
+        showSuccessModal();
 
         // 重置表单
         form.reset();

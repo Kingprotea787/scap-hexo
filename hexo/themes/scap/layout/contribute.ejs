@@ -11,11 +11,35 @@
   <%- partial('_partial/header') %>
 
   <main class="contribute-page">
+    <!-- 3D 走马灯 Hero -->
     <section class="contribute-hero">
-      <h1><%= site.data.submission.title %></h1>
-      <p><%= site.data.submission.description %></p>
+      <div class="carousel-container">
+        <div class="cover-flow-wrapper">
+          <ul class="cover-flow" id="coverFlow">
+            <% site.data.submission.carousel_images.forEach(img => { %>
+              <li><img src="<%= url_for(img) %>" alt="作品"></li>
+            <% }) %>
+          </ul>
+        </div>
+        <h1 class="hero-title"><%= site.data.submission.title %></h1>
+      </div>
     </section>
 
+    <!-- 审核说明 - 移到最上方 -->
+    <section class="review-info-top">
+      <div class="review-card" style="background-image: url('<%= url_for(site.data.submission.review_background) %>');">
+        <div class="review-content">
+          <h2><%= site.data.submission.review.title %></h2>
+          <ul>
+            <% site.data.submission.review.items.forEach(item => { %>
+              <li><%= item %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 切换 -->
     <section class="contribute-tabs">
       <button class="tab-btn active" data-type="illustration">
         <%= site.data.submission.illustration.title %>
@@ -25,6 +49,7 @@
       </button>
     </section>
 
+    <!-- 内容区域 -->
     <section class="contribute-content">
       <!-- 插画投稿面板 -->
       <div class="tab-panel active" id="panel-illustration">
@@ -158,18 +183,18 @@
         </div>
       </div>
     </section>
-
-    <section class="review-info">
-      <h2><%= site.data.submission.review.title %></h2>
-      <ul>
-        <% site.data.submission.review.items.forEach(item => { %>
-          <li><%= item %></li>
-        <% }) %>
-      </ul>
-    </section>
   </main>
 
-  <%- partial('_partial/footer') %>
+  <!-- 成功弹窗 -->
+  <div class="success-modal" id="successModal">
+    <div class="success-dialog">
+      <div class="success-icon">✓</div>
+      <h3>投稿成功</h3>
+      <p>我们会尽快审核并通过邮件通知您</p>
+      <button class="success-close" id="successClose">确定</button>
+    </div>
+  </div>
+
   <script src="<%= url_for('js/nav.js') %>"></script>
   <script src="<%= url_for('js/contribute.js') %>"></script>
 </body>
